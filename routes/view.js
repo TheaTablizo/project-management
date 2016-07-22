@@ -8,12 +8,13 @@ var doc = new PDFDocument();
 
 var id = "153629";
 
-eName = 'Employee Name'
-headerQuali = 'Summary of Qualifications'
-headerSpec = 'Areas of Specialization'
-headertrain = 'Education and Training'
-headerCareer = 'Career Sypnosis'
-headerExp = 'Project Experience'
+var eName = 'Employee Name';
+var headerQuali = 'Summary of Qualifications';
+var headerSpec = 'Areas of Specialization';
+var headertrain = 'Education and Training';
+var headerCareer = 'Career Sypnosis';
+var headerExp = 'Project Experience';
+var contentQuali = 'sample content.'
 
 // var mysql = require('mysql');
 /*
@@ -67,17 +68,37 @@ router.get('/', function(req, res, next) {
     router.get('/:id', function(req, res, next) {
     doc.pipe(fs.createWriteStream('file.pdf'));
     doc.fontSize(20);
-    doc.text(eName, {
-      width:410,
-      align:'center'
-     });
+	doc.text(eName, {
+        width:500, 
+        align:'center'
+    });
+
+    doc.fontSize(10);
+    doc.text(headerQuali, {
+        width:500, 
+        align:'left'
+    });
+
+   		doc.fontSize(10);
+  		  doc.text(contentQuali,150,100);
 
     doc.fontSize(12);
-    doc.text(headerQuali,100,90);
-    doc.text(headerSpec,100,120);
-    doc.text(headertrain,100,390);
-    doc.text(headerCareer,100,490);
-    doc.text(headerExp,100,590);
+    doc.text(headerSpec, {
+        width:500, 
+        align:'left'
+    });
+    doc.text(headertrain, {
+        width:500, 
+        align:'left'
+    });
+    doc.text(headerCareer, {
+        width:500, 
+        align:'left'
+    });
+    doc.text(headerExp, {
+        width:500, 
+        align:'left'
+    });
     doc.pipe(res);
     doc.end();
 
